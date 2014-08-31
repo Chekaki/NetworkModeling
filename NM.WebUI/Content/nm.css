@@ -1,0 +1,33 @@
+﻿.row {
+    display: table-row;
+}
+
+.nm-node-links {
+    display: table;
+}
+
+.cell {
+    display: table-cell;
+}
+
+.edit-links {
+    display: inline-flex;
+}
+
+input.error {
+    border: solid 1px red;
+}
+label.error {
+    color: red;
+}
+
+table {
+    border-collapse: collapse;
+    border: solid black 1px;
+    margin: 5px 10px;
+}
+
+th, td {
+    border: solid black 1px;
+    padding: 5px 10px;
+}

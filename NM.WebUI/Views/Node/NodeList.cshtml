@@ -1,0 +1,21 @@
+﻿@model IEnumerable<NM.Domain.Entities.Node>
+
+@{
+    ViewBag.Title = "Узлы";
+    //Layout = null;
+}
+
+<h2>Главная страница</h2>
+
+<table class="nm-grid">
+    @foreach (var node in Model) {
+        <tr>
+            <td>Узел «@node.Name»</td>
+            <td>@Html.ActionLink("Редактировать", "Edit", new {node.Id})</td>
+            <td>@Html.ActionLink("Удалить", "Delete", new { node.Id })
+            </td>
+        </tr>
+    }
+</table>
+<p>@Html.ActionLink("Добавить узел", "Create")</p>
+<p>@Html.ActionLink("Построить таблицу сети", "BuildTableNetwork")</p>

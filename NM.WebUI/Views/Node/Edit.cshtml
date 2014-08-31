@@ -1,0 +1,84 @@
+﻿@using Ninject.Infrastructure.Language
+@model NM.WebUI.Models.NodeEditViewModel
+@{
+    var node = @Model.Node;
+    var nodes = @Model.Nodes.ToEnumerable();
+    var links = @Model.NodeLinks.ToEnumerable();
+    var linkId = "nf" + node.Id + "ns";
+
+    var jsData = @Html.Raw(Json.Encode(Model));
+    
+    ViewBag.Title = "Редактирование узла: " + node.Name;
+    //Layout = null;
+    var newOrEditString = node.Id == 0
+                              ? "Добавление"
+                              : "Редактирование";
+}
+<script src="http://cdnjs.cloudflare.com/ajax/libs/lodash.js/0.9.2/lodash.js"></script>
+<h1>@newOrEditString узла @node.Name</h1>
+
+<form method="POST" id="formNodeEdit" action="javascript:void(null);" onsubmit="save()">
+    <div style="display: flex">
+        <div class="nm-field-name">Название: </div>
+        <div class="nm-editor-text" id="nodename"><input type="text" name="name" value="@node.Name" /></div>
+    </div>
+
+    <div class="edit-links">
+        <div>Связи: </div>
+        <div id="nodeLinks" class="nm-node-links"></div>
+    </div>
+
+    <div>
+        <input type="submit" value="Сохранить" />
+    </div>
+</form>
+
+<script type="text/template" id="nm-nodeLinks">
+    <div id="<%=linkId%>" class="nm-node-link row">
+        <div class="nm-node-link cell">
+            <%=node.Name%>
+        </div>
+        <div class ="nm-node-link cell">
+            <input type="checkbox"/>
+        </div>
+    </div>
+</script>
+
+<script type="text/template" id="nm-nodeLinks-select">
+    <div id="<%=linkId%>" class="nm-node-link row">
+        <div class="nm-node-link cell">
+            <%=node.Name%>
+        </div>
+        <div class="nm-node-link cell">
+            <input type="checkbox" checked />
+        </div>
+        <div class="nm-node-link cell">
+            вес: <input type="text" name="weight" value="<%=link.Weight%>" />
+        </div>
+    </div>
+</script>
+
+<script type="text/template" id="nm-nodeLinks-hasLink">
+    <div id="<%=linkId%>" class="nm-node-link row">
+        <div class="nm-node-link cell">
+            <%=node.Name%>
+        </div>
+        <div class="nm-node-link cell">
+            Существует путь к узлу через:
+        </div>
+        <div class="nm-node-link cell">
+            <%=nodeWay%>
+        </div>
+    </div>
+</script>
+
+<script type="text/javascript">
+    var data = @jsData;
+    var node = data.Node;
+    var nodes = data.Nodes;
+    var links = data.NodeLinks;
+    var linkId = '@linkId';
+    var removeIdLinks = [];
+    var GlobalAppPath = '@Commons.GetBaseUrl()';
+    LoadNodeLinks();
+</script>

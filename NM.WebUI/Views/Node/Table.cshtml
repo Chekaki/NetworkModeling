@@ -1,0 +1,26 @@
+﻿@model NM.WebUI.Models.TableViewModel
+@{
+    ViewBag.Title = "Таблица";
+    var nodes = @Model.Nodes.ToList();
+    var nodesCount = nodes.Count();
+    var links = @Model.NodeLinks.ToList();
+}
+
+<h2>Table</h2>
+
+<table>
+    <tr>
+        <th></th>
+        @foreach (var node in nodes) {
+            <th>@node.Name</th>
+        }
+    </tr>
+    @foreach (var node in nodes) {
+        <tr>
+            <td>@node.Name</td>
+            @for (var i = 0; i < nodesCount; i++) {
+                <td>@Commons.GetLinkWeidthFromNodeIds(links, node.Id, nodes[i].Id)</td>
+            }
+        </tr>
+    }
+</table>

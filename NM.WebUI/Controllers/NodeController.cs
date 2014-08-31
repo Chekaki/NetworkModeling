@@ -42,13 +42,14 @@ namespace NM.WebUI.Controllers {
 
         [HttpPost]
         public ActionResult SaveNode(Node node, IEnumerable<NodeLink> links, IEnumerable<int> removeIdLinks) {
-            _nodeRepository.SaveNode(node);
+            var savedNode = _nodeRepository.SaveNode(node);
             if (removeIdLinks != null)
                 foreach (var removeIdLink in removeIdLinks) {
                     _nodeLinkRepository.DeleteNodeLink(removeIdLink);
                 }
             if (links != null)
                 foreach (var nodeLink in links.Where(l => l.IsEdit)) {
+                    if (nodeLink.FirstNodeId == 0) nodeLink.FirstNodeId = savedNode.Id;
                     _nodeLinkRepository.SaveNodeLink(nodeLink);
                 }
 

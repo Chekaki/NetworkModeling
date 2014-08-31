@@ -8,21 +8,19 @@ namespace NM.Domain.Concrete {
             get { return Context.Nodes; }
         }
 
-        public void SaveNode(Node node)
-        {
+        public Node SaveNode(Node node) {
+            var savedNode = new Node();
             if (node.Id == 0)
-            {
-                Context.Nodes.Add(node);
-            }
-            else
-            {
+                savedNode = Context.Nodes.Add(node);
+            else {
                 var dbEntity = Context.Nodes.Find(node.Id);
-                if (dbEntity != null)
-                {
+                if (dbEntity != null) {
                     dbEntity.Name = node.Name;
+                    savedNode = dbEntity;
                 }
             }
             Context.SaveChanges();
+            return savedNode;
         }
 
         public Node DeleteNode(int id) {

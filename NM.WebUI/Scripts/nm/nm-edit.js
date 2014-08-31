@@ -250,7 +250,7 @@ function save() {
     if ($("#formNodeEdit input.error").length > 0) return;
 
     var model = this;
-
+    if (model.Name == null) return;
     $.ajax({
         url: model.GlobalAppPath + "Node/SaveNode",
         type: "POST",

@@ -5,7 +5,7 @@ namespace NM.Domain.Abstract {
     public interface INodeRepository {
         IQueryable<Node> Nodes { get; }
 
-        void SaveNode(Node node);
+        Node SaveNode(Node node);
         Node DeleteNode(int id);
     }
 }

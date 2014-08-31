@@ -1,4 +1,4 @@
-﻿.row {
+﻿.nm-node-link {
     display: table-row;
 }
 
@@ -6,8 +6,18 @@
     display: table;
 }
 
-.cell {
+.nm-node-link-name {
     display: table-cell;
+    padding: 3px;
+}
+
+.nm-node-link-text, .nm-node-link-weight, .nm-node-link-check, .nm-editor-text, .nm-field-name {
+    display: inline-block;
+    padding: 3px;
+}
+
+div {
+    padding: 3px;
 }
 
 .edit-links {
@@ -30,4 +40,15 @@ table {
 th, td {
     border: solid black 1px;
     padding: 5px 10px;
+}
+
+.nm-message {
+    font-weight: bold;
+    color: #006400;
+}
+
+input[type=submit] {
+    background: white;
+    border: black 1px solid;
+    margin: 3px;
 }

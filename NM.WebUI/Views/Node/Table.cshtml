@@ -1,12 +1,12 @@
 ﻿@model NM.WebUI.Models.TableViewModel
 @{
-    ViewBag.Title = "Таблица";
+    ViewBag.Title = "Таблица сети";
     var nodes = @Model.Nodes.ToList();
     var nodesCount = nodes.Count();
     var links = @Model.NodeLinks.ToList();
 }
 
-<h2>Table</h2>
+<h2>Таблица сети</h2>
 
 <table>
     <tr>
@@ -24,3 +24,4 @@
         </tr>
     }
 </table>
+<p>@Html.ActionLink("Вернутся к настройке узлов", "NodeList")</p>

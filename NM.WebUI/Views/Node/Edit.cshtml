@@ -18,7 +18,7 @@
 <h1>@newOrEditString узла @node.Name</h1>
 
 <form method="POST" id="formNodeEdit" action="javascript:void(null);" onsubmit="save()">
-    <div style="display: flex">
+    <div>
         <div class="nm-field-name">Название: </div>
         <div class="nm-editor-text" id="nodename"><input type="text" name="name" value="@node.Name" /></div>
     </div>
@@ -31,42 +31,44 @@
     <div>
         <input type="submit" value="Сохранить" />
     </div>
+    
+    <p>@Html.ActionLink("Вернутся к настройке узлов", "NodeList")</p>
 </form>
 
 <script type="text/template" id="nm-nodeLinks">
-    <div id="<%=linkId%>" class="nm-node-link row">
-        <div class="nm-node-link cell">
+    <div id="<%=linkId%>" class="nm-node-link">
+        <div class="nm-node-link-name">
             <%=node.Name%>
         </div>
-        <div class ="nm-node-link cell">
+        <div class ="nm-node-link-check">
             <input type="checkbox"/>
         </div>
     </div>
 </script>
 
 <script type="text/template" id="nm-nodeLinks-select">
-    <div id="<%=linkId%>" class="nm-node-link row">
-        <div class="nm-node-link cell">
+    <div id="<%=linkId%>" class="nm-node-link">
+        <div class="nm-node-link-name">
             <%=node.Name%>
         </div>
-        <div class="nm-node-link cell">
-            <input type="checkbox" checked />
+        <div class="nm-node-link-check">
+            <input type="checkbox"  checked />
         </div>
-        <div class="nm-node-link cell">
+        <div class="nm-node-link-weight">
             вес: <input type="text" name="weight" value="<%=link.Weight%>" />
         </div>
     </div>
 </script>
 
 <script type="text/template" id="nm-nodeLinks-hasLink">
-    <div id="<%=linkId%>" class="nm-node-link row">
-        <div class="nm-node-link cell">
+    <div id="<%=linkId%>" class="nm-node-link">
+        <div class="nm-node-link-name">
             <%=node.Name%>
         </div>
-        <div class="nm-node-link cell">
+        <div class="nm-node-link-text">
             Существует путь к узлу через:
         </div>
-        <div class="nm-node-link cell">
+        <div class="nm-node-link-text">
             <%=nodeWay%>
         </div>
     </div>
